@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.111.3">
-    <title>Starter Template · Bootstrap v5.3</title>
+    <title>Rikha Zuhana(G.111.23.0027)</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">
 
@@ -39,7 +39,7 @@
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <td scope="col">#</td>
+              <td scope="col">No</td>
               <td scope="col">Username</td>
               <td scope="col">Email</td>
               <td scope="col">Artikel</td>
@@ -50,18 +50,22 @@
             </tr>
           </thead>
           <tbody>
+          @foreach ($post_list as $urut => $post)  
             <tr>
-              <td scope="row">-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
+              <td>{{$urut+1}}</td>
+              <td>{{ $post->user->username }}</td>
+              <td>{{ $post->user->email }}</td>
+              <td>{{ $post->article }}</td>
+              <td>{{ $post->jenis }}</td>
+              <td>{{ $post->created_at }}</td>
+              <td>{{ $post->updated_at }}</td>
               <td>
+              <div class="btn-group" role="group" >
+              <a href="{{ site_url('Welcome/edit/' . $post->id) }}" class="btn btn-primary" style="margin-right: 10px;">Edit</a>
                 <a href="{{ site_url('Welcome/hapus/') }}" class="btn btn-danger">Delete</a>
               </td>
             </tr>
+            @endforeach
           </tbody>
         </table>
         <a href="{{ site_url('Welcome/index') }}" class="btn btn-success">Tambah</a>

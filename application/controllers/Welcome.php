@@ -48,7 +48,13 @@ class Welcome extends CI_Controller
     {
         
         if ($this->input->post()){
-
+            $post = new Post;
+            $post->user_id = $this->input->post('user_id');
+            $post->article = $this->input->post('article');
+            $post->jenis = $this->input->post('radio');
+            $post->created_at = date('Y-m-d H:i:s');
+            $post->updated_at = date('Y-m-d H:i:s');
+            $post->save();
         }
 
         redirect('Welcome/index');
@@ -56,6 +62,10 @@ class Welcome extends CI_Controller
 
     public function hapus($id)
     {
+        $post = Post::find($id);
+        if ($post) {
+            $post->delete();
+        }
         
         redirect('Welcome/tampil');
     }
